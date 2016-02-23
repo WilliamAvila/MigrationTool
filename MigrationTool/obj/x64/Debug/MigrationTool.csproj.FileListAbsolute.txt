@@ -1,0 +1,11 @@
+C:\Users\willi\documents\visual studio 2013\Projects\MigrationTool\MigrationTool\bin\x64\Debug\MigrationTool.exe.config
+C:\Users\willi\documents\visual studio 2013\Projects\MigrationTool\MigrationTool\bin\x64\Debug\MigrationTool.exe
+C:\Users\willi\documents\visual studio 2013\Projects\MigrationTool\MigrationTool\bin\x64\Debug\MigrationTool.pdb
+C:\Users\willi\documents\visual studio 2013\Projects\MigrationTool\MigrationTool\obj\x64\Debug\MigrationTool.Form1.resources
+C:\Users\willi\documents\visual studio 2013\Projects\MigrationTool\MigrationTool\obj\x64\Debug\MigrationTool.Properties.Resources.resources
+C:\Users\willi\documents\visual studio 2013\Projects\MigrationTool\MigrationTool\obj\x64\Debug\MigrationTool.csproj.GenerateResource.Cache
+C:\Users\willi\documents\visual studio 2013\Projects\MigrationTool\MigrationTool\obj\x64\Debug\MigrationTool.exe
+C:\Users\willi\documents\visual studio 2013\Projects\MigrationTool\MigrationTool\obj\x64\Debug\MigrationTool.pdb
+C:\Users\willi\documents\visual studio 2013\Projects\MigrationTool\MigrationTool\obj\x64\Debug\MigrationTool.csprojResolveAssemblyReference.cache
+C:\Users\willi\documents\visual studio 2013\Projects\MigrationTool\MigrationTool\bin\x64\Debug\Npgsql.dll
+C:\Users\willi\documents\visual studio 2013\Projects\MigrationTool\MigrationTool\bin\x64\Debug\Npgsql.xml

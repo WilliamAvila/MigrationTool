@@ -1,0 +1,10 @@
+c:\users\willi\documents\visual studio 2013\Projects\MigrationTool\MigrationTool\bin\Debug\MigrationTool.exe.config
+c:\users\willi\documents\visual studio 2013\Projects\MigrationTool\MigrationTool\bin\Debug\MigrationTool.exe
+c:\users\willi\documents\visual studio 2013\Projects\MigrationTool\MigrationTool\bin\Debug\MigrationTool.pdb
+c:\users\willi\documents\visual studio 2013\Projects\MigrationTool\MigrationTool\obj\Debug\MigrationTool.csprojResolveAssemblyReference.cache
+c:\users\willi\documents\visual studio 2013\Projects\MigrationTool\MigrationTool\obj\Debug\MigrationTool.Properties.Resources.resources
+c:\users\willi\documents\visual studio 2013\Projects\MigrationTool\MigrationTool\obj\Debug\MigrationTool.csproj.GenerateResource.Cache
+c:\users\willi\documents\visual studio 2013\Projects\MigrationTool\MigrationTool\obj\Debug\MigrationTool.exe
+c:\users\willi\documents\visual studio 2013\Projects\MigrationTool\MigrationTool\obj\Debug\MigrationTool.pdb
+C:\Users\willi\documents\visual studio 2013\Projects\MigrationTool\MigrationTool\obj\Debug\MigrationTool.Form1.resources
+C:\Users\willi\documents\visual studio 2013\Projects\MigrationTool\MigrationTool\bin\Debug\Oracle.DataAccess.dll
