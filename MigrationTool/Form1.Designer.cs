@@ -56,6 +56,7 @@
             this.comboBoxDatabaseDestination = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.labelSuccessMigration = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
@@ -295,11 +296,21 @@
             this.label12.TabIndex = 27;
             this.label12.Text = "DataBase";
             // 
+            // labelSuccessMigration
+            // 
+            this.labelSuccessMigration.AutoSize = true;
+            this.labelSuccessMigration.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelSuccessMigration.Location = new System.Drawing.Point(326, 335);
+            this.labelSuccessMigration.Name = "labelSuccessMigration";
+            this.labelSuccessMigration.Size = new System.Drawing.Size(0, 20);
+            this.labelSuccessMigration.TabIndex = 28;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(552, 383);
+            this.Controls.Add(this.labelSuccessMigration);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.comboBoxDatabaseDestination);
@@ -327,6 +338,7 @@
             this.Controls.Add(this.textBoxPasswordSource);
             this.Controls.Add(this.textBoxUserSource);
             this.Controls.Add(this.button1);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -365,6 +377,7 @@
         private System.Windows.Forms.ComboBox comboBoxDatabaseDestination;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label labelSuccessMigration;
     }
 }
 

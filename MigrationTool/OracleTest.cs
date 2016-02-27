@@ -48,7 +48,7 @@ namespace MigrationTool
             {
                 createTable(owner,tables[i], columnInfo[i]);
 
-                for (int j = 0; j < columnValuesList[i].Count; j++)
+                for (int j = 0; j <tables.Count; j++)
                 {
 
                     fillTable(owner, tables[i], columnNames[i], columnValuesList[i]);
@@ -141,18 +141,22 @@ namespace MigrationTool
         public void fillTable(string owner, string tableName, string columnNames, List<string> columnValuesList)
         {
 
-            OracleCommand cmd = new OracleCommand();
-            cmd.Connection = con;
-            cmd.CommandText = "insert  all ";
-            for (int i = 0; i < columnValuesList.Count; i++)
+            if (columnValuesList.Count > 0)
             {
-                cmd.CommandText += "into " + owner + "." + tableName + " (" + columnNames + ") values (" + columnValuesList[i] + ") ";
-             
+                OracleCommand cmd = new OracleCommand();
+                cmd.Connection = con;
+                cmd.CommandText = "insert  all ";
+                for (int i = 0; i < columnValuesList.Count; i++)
+                {
+                    cmd.CommandText += "into " + owner + "." + tableName + " (" + columnNames + ") values (" +
+                                       columnValuesList[i] + ") ";
+
+                }
+                cmd.CommandText += "SELECT * FROM dual";
+                cmd.CommandType = CommandType.Text;
+                cmd.ExecuteNonQuery();
             }
-            cmd.CommandText += "SELECT * FROM dual";
-            cmd.CommandType = CommandType.Text;
-            cmd.ExecuteNonQuery();
-          
+
 
         }
 
@@ -218,16 +222,18 @@ namespace MigrationTool
                 {
                     var value = dr.GetValue(i);
                     var type = value.GetType();
-
                     if (type.Name.Equals("String"))
-                        row += "'" + value + "'" + ",";
+                        row += "'" + value + "',";
                     else if (type.Name.Equals("DateTime"))
                     {
                         var meridian = ((DateTime)value).ToString("tt", CultureInfo.InvariantCulture);
                         row += "TO_DATE('" + value + "', 'mm/dd/yyyy hh:mi:ss " + meridian + "'),";
                     }
-                    else
+                    else if (type.Name.Equals("DBNull"))
                     {
+                        row += "NULL,";
+                    }
+                    else{
                         row += value + ",";
                     }
 

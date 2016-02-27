@@ -85,7 +85,8 @@ namespace MigrationTool
                 
 
                 oraTestDest.migrateData(oraTestDest.owner, tables, columnInfoList, columnNames, columnValues);
-                
+                labelSuccessMigration.Text = "Successful Migration";
+
             }
         }
     }
