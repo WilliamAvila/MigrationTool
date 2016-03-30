@@ -6,7 +6,9 @@ using System.Data.OracleClient;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using Npgsql;
 
 namespace MigrationTool
 {
@@ -14,6 +16,8 @@ namespace MigrationTool
     {
         public OracleConnection con;
         public string owner;
+        private List<TableInfo> tables;
+        private string connectionString;
 
         public bool Connect(string host, string port, string user, string password)
         {
@@ -21,9 +25,10 @@ namespace MigrationTool
             {
                 owner = user;
                 con = new OracleConnection();
-                con.ConnectionString = "Data Source=(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST =" + host + ")(PORT =" +
+                connectionString = "Data Source=(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST =" + host + ")(PORT =" +
                                        port + "))(CONNECT_DATA = (SERVER = DEDICATED)(SERVICE_NAME = XE)))" +
                                        ";User Id=" + user + ";Password=" + password + ";";
+                con.ConnectionString = connectionString;
                 con.Open();
             }
             catch (Exception e)
@@ -33,6 +38,26 @@ namespace MigrationTool
        
 
             return true;
+        }
+
+        public void executeQuery(string query)
+        {
+       
+                OracleCommand command = new OracleCommand(query, con);
+                command.ExecuteNonQuery();
+          
+        }
+
+        public void executeQueries(List<string> queries)
+        {
+            
+            foreach (var query in queries)
+            {
+                if(query.Equals(" "))
+                    continue;
+                OracleCommand command = new OracleCommand(query, con);
+                command.ExecuteNonQuery();
+            }
         }
 
         public void Close()
@@ -53,14 +78,12 @@ namespace MigrationTool
 
                     fillTable(owner, tables[i], columnNames[i], columnValuesList[i]);
                 }
-
-             
             }
          
         }
 
 
-        public List<string> getSysTables(string owner)
+        public List<string> getSysTables()
         {
 
             OracleCommand cmd = new OracleCommand();
@@ -77,7 +100,84 @@ namespace MigrationTool
             }
 
             return data;
-        } 
+        }
+        public void fillTables()
+        {
+       
+            foreach (var table in tables)
+            {
+
+                string columns = "SELECT * FROM information_schema.columns where table_name = '" + table.name + "'";
+                OracleCommand command = new OracleCommand(columns, con);
+
+                OracleDataReader dr = command.ExecuteReader();
+                while (dr.Read())
+                {
+                    var type = dr[7].ToString();
+                    if (type.Contains("char"))
+                        table.columns.Add(new ColumnInfo(dr[3].ToString(), dr[7].ToString().ToUpper(), dr[8].ToString()));
+                    else
+                        table.columns.Add(new ColumnInfo(dr[3].ToString(), dr[7].ToString().ToUpper(), ""));
+
+                }
+                dr.Close();
+
+            }
+
+        }
+        public void getDataTables()
+        {
+          
+            foreach (var table in tables)
+            {
+
+                string columns = "SELECT * FROM " + "\"" + table.name + "\"";
+                OracleCommand command = new OracleCommand(columns, con);
+
+                OracleDataReader dr = command.ExecuteReader();
+                while (dr.Read())
+                {
+                    string row = "";
+
+
+                    for (int i = 0; i < dr.FieldCount; i++)
+                    {
+                        var value = dr.GetValue(i);
+                        var type = value.GetType();
+                        if (type.Name.Equals("DBNull"))
+                            row += "NULL";
+                        else if (type.Name.Equals("String"))
+                            row += "'" + value + "'";
+                        else
+                            row += value;
+
+                        row += ",";
+
+                    }
+                    row = row.Remove(row.Length - 1);
+                    table.rows.Add(row);
+                }
+
+                dr.Close();
+
+
+            }
+        }
+        public void getSystables()
+        {
+            string sysTables = "select * from all_tables where owner = '" + owner.ToUpper() + "'";
+
+            OracleCommand command = new OracleCommand(sysTables, con);
+
+            OracleDataReader dr = command.ExecuteReader();
+            tables = new List<TableInfo>();
+
+            while (dr.Read())
+            {
+                tables.Add(new TableInfo(dr[0].ToString()));
+            }
+            con.Close();
+        }
 
         public void createTable(string schema, string tableName, string columnInfo)
         {
@@ -295,5 +395,26 @@ namespace MigrationTool
             }
                
        }
+
+        public string GetCreateTableQueries()
+        {
+            List<string> insertQueries = new List<string>();
+            foreach (var table in tables)
+            {
+                insertQueries.Add(table.GetInsertAllDataPostgresQuery());
+            }
+            return String.Join(";", insertQueries);
+        }
+
+        public List<string> GetInsertDataQueries()
+        {
+            List<string> insertQueries = new List<string>();
+            foreach (var table in tables)
+            {
+                insertQueries.Add(table.GetInsertAllDataToOracleQuery());
+            }
+            return insertQueries;
+            
+        }
     }
 }
