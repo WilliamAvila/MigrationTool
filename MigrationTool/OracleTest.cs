@@ -83,9 +83,9 @@ namespace MigrationTool
         }
 
 
-        public List<string> getSysTables()
+        public void getSysTables()
         {
-
+            tables = new List<TableInfo>();
             OracleCommand cmd = new OracleCommand();
             cmd.Connection = con;
             cmd.CommandText = "select * from all_tables where owner = '" + owner.ToUpper() + "'";
@@ -93,13 +93,11 @@ namespace MigrationTool
 
 
             OracleDataReader dr = cmd.ExecuteReader();
-            List<string> data = new List<string>();
             while (dr.Read())
             {
-                data.Add(dr.GetString(1));
+                tables.Add(new TableInfo(dr.GetString(1)));
             }
 
-            return data;
         }
         public void fillTables()
         {
@@ -107,17 +105,18 @@ namespace MigrationTool
             foreach (var table in tables)
             {
 
-                string columns = "SELECT * FROM information_schema.columns where table_name = '" + table.name + "'";
+                string columns = "select * from ALL_TAB_COLUMNS where owner = '" + owner.ToUpper() +
+                                 "' and TABLE_NAME = '" + table.name + "'";
                 OracleCommand command = new OracleCommand(columns, con);
-
+               
                 OracleDataReader dr = command.ExecuteReader();
                 while (dr.Read())
                 {
-                    var type = dr[7].ToString();
-                    if (type.Contains("char"))
-                        table.columns.Add(new ColumnInfo(dr[3].ToString(), dr[7].ToString().ToUpper(), dr[8].ToString()));
+                    var type = dr[3].ToString();
+                    if (type.Contains("char") || type.Contains("CHAR"))
+                        table.columns.Add(new ColumnInfo(dr[2].ToString(), dr[3].ToString().ToUpper(), dr[6].ToString()));
                     else
-                        table.columns.Add(new ColumnInfo(dr[3].ToString(), dr[7].ToString().ToUpper(), ""));
+                        table.columns.Add(new ColumnInfo(dr[2].ToString(), dr[3].ToString().ToUpper(), ""));
 
                 }
                 dr.Close();
@@ -146,7 +145,7 @@ namespace MigrationTool
                         var type = value.GetType();
                         if (type.Name.Equals("DBNull"))
                             row += "NULL";
-                        else if (type.Name.Equals("String"))
+                        else if (type.Name.Equals("String") || type.Name.Equals("DateTime"))
                             row += "'" + value + "'";
                         else
                             row += value;
@@ -401,7 +400,7 @@ namespace MigrationTool
             List<string> insertQueries = new List<string>();
             foreach (var table in tables)
             {
-                insertQueries.Add(table.GetInsertAllDataPostgresQuery());
+                insertQueries.Add(table.GetCreateTableQueryPostgresType());
             }
             return String.Join(";", insertQueries);
         }
@@ -411,7 +410,7 @@ namespace MigrationTool
             List<string> insertQueries = new List<string>();
             foreach (var table in tables)
             {
-                insertQueries.Add(table.GetInsertAllDataToOracleQuery());
+                insertQueries.Add(table.GetInsertAllDataToPostgresQuery());
             }
             return insertQueries;
             

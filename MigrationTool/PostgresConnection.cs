@@ -172,7 +172,9 @@ namespace MigrationTool
         }
 
         public void ExecuteQueries(List<string> queries)
-        {
+        { 
+            NpgsqlConnection conn = new NpgsqlConnection(connstring);
+            conn.Open();
             foreach (var query in queries)
             {
                 if (query.Equals(" "))
@@ -180,6 +182,8 @@ namespace MigrationTool
                 NpgsqlCommand command = new NpgsqlCommand(query, conn);
                 command.ExecuteNonQuery();
             }
+
+            conn.Close();
         }
     }
 }

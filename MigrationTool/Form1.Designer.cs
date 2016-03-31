@@ -307,7 +307,7 @@
             // 
             this.labelSuccessMigration.AutoSize = true;
             this.labelSuccessMigration.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelSuccessMigration.Location = new System.Drawing.Point(326, 335);
+            this.labelSuccessMigration.Location = new System.Drawing.Point(337, 355);
             this.labelSuccessMigration.Name = "labelSuccessMigration";
             this.labelSuccessMigration.Size = new System.Drawing.Size(0, 20);
             this.labelSuccessMigration.TabIndex = 28;

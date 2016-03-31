@@ -92,6 +92,7 @@ namespace MigrationTool
             return createTable;
         }
 
+
         public string GetCreateTableQueryOracleType()
         {
             string columnData = " ";
@@ -109,6 +110,50 @@ namespace MigrationTool
             string createTable = "CREATE TABLE " + name + "(" + columnData + ")";
 
             return createTable;
+        }
+
+        public string GetCreateTableQueryPostgresType()
+        {
+            string columnData = " ";
+
+            foreach (var column in columns)
+            {
+                if (column.type.Contains("CHAR") && !column.GetCharPrecision().Equals("1"))
+                    columnData += column.name + " " + Types.dbtypes[column.type] + "(" + column.GetCharPrecision() + "),";
+                else
+                    columnData += column.name + " " + Types.dbtypes[column.type] + ",";
+
+            }
+            columnData = columnData.Remove(columnData.Length - 1);
+
+            string createTable = "CREATE TABLE " + name + "(" + columnData + ")";
+
+            return createTable;
+        }
+
+        public string GetInsertAllDataToPostgresQuery()
+        {
+            if (!rows.Any())
+                return " ";
+            string cols = " ";
+            foreach (var column in columns)
+            {
+                cols += column.name + ",";
+            }
+
+            cols = cols.Remove(cols.Length - 1);
+
+            string insertQuery = "INSERT INTO " + name + "(" + cols + ") VALUES ";
+
+            List<String> data = new List<String>();
+            foreach (var row in rows)
+            {
+                string item = "(" + String.Join(",", row) + ")";
+                data.Add(item);
+            }
+
+            insertQuery += String.Join(",", data);
+            return insertQuery;
         }
     }
 }

@@ -86,28 +86,7 @@ namespace MigrationTool
         {
             if (comboBoxDatabaseSource.Text.Equals("Oracle") && comboBoxDatabaseDestination.Text.Equals("Oracle"))
             {
-                oraTest.Connect(textBoxServerSouce.Text, textBoxPortSource.Text, textBoxUserSource.Text, textBoxPasswordSource.Text);
-                
-                labelTestSource.Text = "Connected";
-                sourceConnection = true;
-                oraTest.getSysTables();
 
-                oraTestDest.Connect(textBoxServerDest.Text, textBoxPortDest.Text, textBoxUserDest.Text, textBoxPasswordDest.Text);
-
-                labelTestDest.Text = "Connected";
-                sourceConnection = true;
-                oraTest.getSysTables();
-
-                var tables = oraTest.getSysTables();
-                var columnInfoList = oraTest.getColumnInfoList(tables);
-                var columnNames = oraTest.getColumnNamesList(oraTest.owner, tables);
-                var columnValues = oraTest.getAllColumnValues(tables);
-
-                
-
-                oraTestDest.migrateData(oraTestDest.owner, tables, columnInfoList, columnNames, columnValues);
-                labelSuccessMigration.Text = "Successful Migration";
-                MessageBox.Show("Success");
 
             }
             else if (comboBoxDatabaseSource.Text.Equals("Postgres") && comboBoxDatabaseDestination.Text.Equals("Oracle"))
@@ -149,7 +128,7 @@ namespace MigrationTool
             {
                 oraTest.Connect(textBoxServerSouce.Text, textBoxPortSource.Text, textBoxUserSource.Text, textBoxPasswordSource.Text);
 
-               
+                oraTest.getSysTables();
                 oraTest.fillTables();
                 oraTest.getDataTables();
 
