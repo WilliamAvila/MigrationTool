@@ -57,14 +57,18 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.labelSuccessMigration = new System.Windows.Forms.Label();
+            this.labelDBNameSrc = new System.Windows.Forms.Label();
+            this.textBoxDBNameSrc = new System.Windows.Forms.TextBox();
+            this.textBoxDBNameDest = new System.Windows.Forms.TextBox();
+            this.labelDBNameDest = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(200, 330);
+            this.button1.Location = new System.Drawing.Point(217, 352);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
+            this.button1.TabIndex = 15;
             this.button1.Text = "Migrate";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -74,14 +78,14 @@
             this.textBoxUserSource.Location = new System.Drawing.Point(87, 91);
             this.textBoxUserSource.Name = "textBoxUserSource";
             this.textBoxUserSource.Size = new System.Drawing.Size(100, 20);
-            this.textBoxUserSource.TabIndex = 1;
+            this.textBoxUserSource.TabIndex = 2;
             // 
             // textBoxPasswordSource
             // 
             this.textBoxPasswordSource.Location = new System.Drawing.Point(87, 131);
             this.textBoxPasswordSource.Name = "textBoxPasswordSource";
             this.textBoxPasswordSource.Size = new System.Drawing.Size(100, 20);
-            this.textBoxPasswordSource.TabIndex = 2;
+            this.textBoxPasswordSource.TabIndex = 3;
             this.textBoxPasswordSource.UseSystemPasswordChar = true;
             // 
             // textBoxServerSouce
@@ -89,7 +93,7 @@
             this.textBoxServerSouce.Location = new System.Drawing.Point(86, 176);
             this.textBoxServerSouce.Name = "textBoxServerSouce";
             this.textBoxServerSouce.Size = new System.Drawing.Size(100, 20);
-            this.textBoxServerSouce.TabIndex = 3;
+            this.textBoxServerSouce.TabIndex = 4;
             // 
             // label1
             // 
@@ -97,7 +101,7 @@
             this.label1.Location = new System.Drawing.Point(12, 94);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(29, 13);
-            this.label1.TabIndex = 4;
+            this.label1.TabIndex = 17;
             this.label1.Text = "User";
             // 
             // label2
@@ -106,7 +110,7 @@
             this.label2.Location = new System.Drawing.Point(9, 137);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 13);
-            this.label2.TabIndex = 5;
+            this.label2.TabIndex = 18;
             this.label2.Text = "Password";
             // 
             // label3
@@ -115,7 +119,7 @@
             this.label3.Location = new System.Drawing.Point(9, 182);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(38, 13);
-            this.label3.TabIndex = 6;
+            this.label3.TabIndex = 19;
             this.label3.Text = "Server";
             // 
             // label4
@@ -124,7 +128,7 @@
             this.label4.Location = new System.Drawing.Point(12, 223);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(26, 13);
-            this.label4.TabIndex = 7;
+            this.label4.TabIndex = 20;
             this.label4.Text = "Port";
             this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
@@ -133,14 +137,14 @@
             this.textBoxPortSource.Location = new System.Drawing.Point(87, 223);
             this.textBoxPortSource.Name = "textBoxPortSource";
             this.textBoxPortSource.Size = new System.Drawing.Size(51, 20);
-            this.textBoxPortSource.TabIndex = 8;
+            this.textBoxPortSource.TabIndex = 5;
             // 
             // textBoxPortDest
             // 
             this.textBoxPortDest.Location = new System.Drawing.Point(413, 223);
             this.textBoxPortDest.Name = "textBoxPortDest";
             this.textBoxPortDest.Size = new System.Drawing.Size(51, 20);
-            this.textBoxPortDest.TabIndex = 16;
+            this.textBoxPortDest.TabIndex = 12;
             // 
             // label5
             // 
@@ -148,7 +152,7 @@
             this.label5.Location = new System.Drawing.Point(338, 223);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(26, 13);
-            this.label5.TabIndex = 15;
+            this.label5.TabIndex = 26;
             this.label5.Text = "Port";
             // 
             // label6
@@ -157,7 +161,7 @@
             this.label6.Location = new System.Drawing.Point(335, 182);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(38, 13);
-            this.label6.TabIndex = 14;
+            this.label6.TabIndex = 25;
             this.label6.Text = "Server";
             // 
             // label7
@@ -166,7 +170,7 @@
             this.label7.Location = new System.Drawing.Point(335, 137);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(53, 13);
-            this.label7.TabIndex = 13;
+            this.label7.TabIndex = 24;
             this.label7.Text = "Password";
             // 
             // label8
@@ -175,7 +179,7 @@
             this.label8.Location = new System.Drawing.Point(338, 94);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(29, 13);
-            this.label8.TabIndex = 12;
+            this.label8.TabIndex = 23;
             this.label8.Text = "User";
             // 
             // textBoxServerDest
@@ -207,7 +211,7 @@
             this.label9.Location = new System.Drawing.Point(93, 13);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(60, 20);
-            this.label9.TabIndex = 17;
+            this.label9.TabIndex = 28;
             this.label9.Text = "Source";
             this.label9.Click += new System.EventHandler(this.label9_Click);
             // 
@@ -218,32 +222,33 @@
             this.label10.Location = new System.Drawing.Point(400, 13);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(90, 20);
-            this.label10.TabIndex = 18;
+            this.label10.TabIndex = 29;
             this.label10.Text = "Destination";
             // 
             // buttonTestSource
             // 
-            this.buttonTestSource.Location = new System.Drawing.Point(12, 270);
+            this.buttonTestSource.Location = new System.Drawing.Point(15, 275);
             this.buttonTestSource.Name = "buttonTestSource";
             this.buttonTestSource.Size = new System.Drawing.Size(97, 23);
-            this.buttonTestSource.TabIndex = 20;
+            this.buttonTestSource.TabIndex = 7;
             this.buttonTestSource.Text = "Test Connection";
             this.buttonTestSource.UseVisualStyleBackColor = true;
             this.buttonTestSource.Click += new System.EventHandler(this.buttonTestSource_Click);
             // 
             // buttonTestDest
             // 
-            this.buttonTestDest.Location = new System.Drawing.Point(338, 270);
+            this.buttonTestDest.Location = new System.Drawing.Point(338, 275);
             this.buttonTestDest.Name = "buttonTestDest";
             this.buttonTestDest.Size = new System.Drawing.Size(98, 23);
-            this.buttonTestDest.TabIndex = 21;
+            this.buttonTestDest.TabIndex = 14;
             this.buttonTestDest.Text = "Test Connection";
             this.buttonTestDest.UseVisualStyleBackColor = true;
+            this.buttonTestDest.Click += new System.EventHandler(this.buttonTestDest_Click);
             // 
             // labelTestSource
             // 
             this.labelTestSource.AutoSize = true;
-            this.labelTestSource.Location = new System.Drawing.Point(138, 275);
+            this.labelTestSource.Location = new System.Drawing.Point(133, 284);
             this.labelTestSource.Name = "labelTestSource";
             this.labelTestSource.Size = new System.Drawing.Size(0, 13);
             this.labelTestSource.TabIndex = 22;
@@ -251,7 +256,7 @@
             // labelTestDest
             // 
             this.labelTestDest.AutoSize = true;
-            this.labelTestDest.Location = new System.Drawing.Point(464, 275);
+            this.labelTestDest.Location = new System.Drawing.Point(459, 284);
             this.labelTestDest.Name = "labelTestDest";
             this.labelTestDest.Size = new System.Drawing.Size(0, 13);
             this.labelTestDest.TabIndex = 23;
@@ -265,7 +270,8 @@
             this.comboBoxDatabaseSource.Location = new System.Drawing.Point(86, 50);
             this.comboBoxDatabaseSource.Name = "comboBoxDatabaseSource";
             this.comboBoxDatabaseSource.Size = new System.Drawing.Size(101, 21);
-            this.comboBoxDatabaseSource.TabIndex = 24;
+            this.comboBoxDatabaseSource.TabIndex = 1;
+            this.comboBoxDatabaseSource.SelectedIndexChanged += new System.EventHandler(this.comboBoxDatabaseSource_SelectedIndexChanged);
             // 
             // comboBoxDatabaseDestination
             // 
@@ -276,7 +282,8 @@
             this.comboBoxDatabaseDestination.Location = new System.Drawing.Point(411, 47);
             this.comboBoxDatabaseDestination.Name = "comboBoxDatabaseDestination";
             this.comboBoxDatabaseDestination.Size = new System.Drawing.Size(101, 21);
-            this.comboBoxDatabaseDestination.TabIndex = 25;
+            this.comboBoxDatabaseDestination.TabIndex = 8;
+            this.comboBoxDatabaseDestination.SelectedIndexChanged += new System.EventHandler(this.comboBoxDatabaseDestination_SelectedIndexChanged);
             // 
             // label11
             // 
@@ -284,7 +291,7 @@
             this.label11.Location = new System.Drawing.Point(338, 50);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(54, 13);
-            this.label11.TabIndex = 26;
+            this.label11.TabIndex = 22;
             this.label11.Text = "DataBase";
             // 
             // label12
@@ -293,23 +300,64 @@
             this.label12.Location = new System.Drawing.Point(12, 53);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(54, 13);
-            this.label12.TabIndex = 27;
+            this.label12.TabIndex = 16;
             this.label12.Text = "DataBase";
             // 
             // labelSuccessMigration
             // 
             this.labelSuccessMigration.AutoSize = true;
             this.labelSuccessMigration.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelSuccessMigration.Location = new System.Drawing.Point(326, 335);
+            this.labelSuccessMigration.Location = new System.Drawing.Point(337, 355);
             this.labelSuccessMigration.Name = "labelSuccessMigration";
             this.labelSuccessMigration.Size = new System.Drawing.Size(0, 20);
             this.labelSuccessMigration.TabIndex = 28;
+            // 
+            // labelDBNameSrc
+            // 
+            this.labelDBNameSrc.AutoSize = true;
+            this.labelDBNameSrc.Location = new System.Drawing.Point(7, 268);
+            this.labelDBNameSrc.Name = "labelDBNameSrc";
+            this.labelDBNameSrc.Size = new System.Drawing.Size(84, 13);
+            this.labelDBNameSrc.TabIndex = 21;
+            this.labelDBNameSrc.Text = "Database Name";
+            this.labelDBNameSrc.Visible = false;
+            // 
+            // textBoxDBNameSrc
+            // 
+            this.textBoxDBNameSrc.Location = new System.Drawing.Point(97, 265);
+            this.textBoxDBNameSrc.Name = "textBoxDBNameSrc";
+            this.textBoxDBNameSrc.Size = new System.Drawing.Size(99, 20);
+            this.textBoxDBNameSrc.TabIndex = 6;
+            this.textBoxDBNameSrc.Visible = false;
+            this.textBoxDBNameSrc.TextChanged += new System.EventHandler(this.textBoxDBNameSrc_TextChanged);
+            // 
+            // textBoxDBNameDest
+            // 
+            this.textBoxDBNameDest.Location = new System.Drawing.Point(420, 269);
+            this.textBoxDBNameDest.Name = "textBoxDBNameDest";
+            this.textBoxDBNameDest.Size = new System.Drawing.Size(99, 20);
+            this.textBoxDBNameDest.TabIndex = 13;
+            this.textBoxDBNameDest.Visible = false;
+            // 
+            // labelDBNameDest
+            // 
+            this.labelDBNameDest.AutoSize = true;
+            this.labelDBNameDest.Location = new System.Drawing.Point(330, 272);
+            this.labelDBNameDest.Name = "labelDBNameDest";
+            this.labelDBNameDest.Size = new System.Drawing.Size(84, 13);
+            this.labelDBNameDest.TabIndex = 27;
+            this.labelDBNameDest.Text = "Database Name";
+            this.labelDBNameDest.Visible = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(552, 383);
+            this.ClientSize = new System.Drawing.Size(553, 406);
+            this.Controls.Add(this.textBoxDBNameDest);
+            this.Controls.Add(this.labelDBNameDest);
+            this.Controls.Add(this.textBoxDBNameSrc);
+            this.Controls.Add(this.labelDBNameSrc);
             this.Controls.Add(this.labelSuccessMigration);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
@@ -378,6 +426,10 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label labelSuccessMigration;
+        private System.Windows.Forms.Label labelDBNameSrc;
+        private System.Windows.Forms.TextBox textBoxDBNameSrc;
+        private System.Windows.Forms.TextBox textBoxDBNameDest;
+        private System.Windows.Forms.Label labelDBNameDest;
     }
 }
 
