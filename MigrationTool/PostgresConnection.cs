@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -101,8 +102,13 @@ namespace MigrationTool
                         var type = value.GetType();
                         if (type.Name.Equals("DBNull"))
                             row += "NULL";
-                        else if (type.Name.Equals("String"))
+                        else if (type.Name.Equals("String") )
                             row += "'" + value + "'";
+                        else if (type.Name.Equals("DateTime"))
+                        {
+                            var meridian = ((DateTime)value).ToString("tt", CultureInfo.InvariantCulture);
+                            row += "TO_DATE('" + value + "', 'mm/dd/yyyy hh:mi:ss " + meridian + "')";
+                        }
                         else
                             row += value;
 
