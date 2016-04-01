@@ -38,7 +38,7 @@ namespace MigrationTool
             {"REAL","DOUBLE PRECISION"},
             {"ROWID","CHAR(10)"},
             {"SMALLINT","DECIMAL(38)"},
-            {"TIMESTAMP","TIMESTAMP"},
+            {"TIMESTAMP","TIMESTAMP WITHOUT TIME ZONE"},
             {"TIMESTAMP(p) WITH TIME ZONE","TIMESTAMP(p) WITH TIME ZONE"},
             {"UROWID","VARCHAR"},
             {"VARCHAR","VARCHAR"},
